@@ -90,4 +90,6 @@ resource "aws_codebuild_project" "codebuild_project" {
     }
   }
 
+  tags = var.common_tags
+
 }

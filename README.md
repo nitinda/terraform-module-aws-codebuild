@@ -47,8 +47,25 @@ To use this module, add the following call to your code:
 
 ```tf
 module "<layer>-codebuild-project-<AccountID>" {
-  source = "git::https://github.com/nitinda/terraform-module-aws-codebuild-project.git?ref=master"
+  source = "git::https://github.com/nitinda/terraform-module-aws-codebuild-project.git?ref=terraform-12/master"
 
+    providers = {
+    aws = aws.services
+  }
+
+  build_timeout = 60
+  artifacts     = {
+    type = "NO_ARTIFACTS"
+  }
+  
+  common_tags          = var.common_tags
+  service_role_arn     = module.iam_role_code_build.arn
+  codebuild_source     = local.codebuild_source
+  source_auth          = local.codebuild_source_auth
+  logs_config          = local.logs_config
+  environment          = local.environment 
+  environment_variable = local.environment_variable
+  vpc_config           = local.vpc_config
 
 }
 ```

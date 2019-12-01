@@ -55,17 +55,9 @@ variable "environment_variable" {
   type = list(map(string))
 }
 
-# variable "environment" {}
-
 variable "encrypt_ami" {
   default = true
 }
-
-# variable "kms_key_arn" {
-#   description = "If Encrypt_ami set to true then you must pass in the arn of the key you wish to encrypt disk with."
-#   default = "Default"
-#   type = "string"
-# }
 
 variable "environment_build_image" {
   type        = string
@@ -73,35 +65,6 @@ variable "environment_build_image" {
   description = "Docker image used by CodeBuild"
 }
 
-# variable "packer_build_subnet_ids" {
-#   type        = "list"
-#   description = "Public subnet where Packer build instacen should run."
-# }
-
-# variable "packer_file_location" {
-#   type        = "string"
-#   description = "The file path of the .json packer to build."
-# }
-
-# variable "packer_vars_file_location" {
-#   type = "string"
-#   default = ""
-#   description = "The file path to where extra Packer vars can be referenced"
-# }
-
-# variable "project_name" {
-#   type = "string"
-#   description = "Name of the CodeBuild Project"
-# }
-
-# variable "source_repository_url" {
-#   type        = "string"
-#   description = "The source repository URL"
-# }
-
-# variable "vpc_id" {}
-
 variable "common_tags" {
   type = map(string)
 }
-

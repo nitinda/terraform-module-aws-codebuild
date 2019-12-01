@@ -64,7 +64,6 @@ The variables required in order for the module to be successfully called from th
 
 
 
-Details are in respective branch.
 
 
 ## Outputs

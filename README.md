@@ -57,16 +57,31 @@ module "<layer>-codebuild-project-<AccountID>" {
   artifacts     = {
     type = "NO_ARTIFACTS"
   }
-  
+
   common_tags          = var.common_tags
   service_role_arn     = module.iam_role_code_build.arn
   codebuild_source     = local.codebuild_source
   source_auth          = local.codebuild_source_auth
-  logs_config          = local.logs_config
-  environment          = local.environment 
-  environment_variable = local.environment_variable
+  logs_config          = {
+    s3_logs = {
+      status = "DISABLED"
+    },
+    cloudwatch_logs = {
+      status = "ENABLED"
+    }
+  }
+  environment          = {
+    compute_type = "BUILD_GENERAL1_SMALL"
+    image        = "aws/codebuild/standard:3.0"
+    type         = "LINUX_CONTAINER"
+  }
+  environment_variable = [
+    {
+      name  = "AMAZON_LINUX2_AMI"
+      value = "AmazonLinux2-Base-AMI.json"
+    }
+  ]
   vpc_config           = local.vpc_config
-
 }
 ```
 ---

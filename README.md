@@ -91,20 +91,20 @@ module "<layer>-codebuild-project-<AccountID>" {
 The variables required in order for the module to be successfully called from the deployment repository are the following:
 
 
-|         **_Variable_**          |        **_Description_**            |   **_Type_**   |
-|---------------------------------|-------------------------------------|----------------|
-| name                            | The projects name                   | string         |
-| description                     | A short description of the project  | string         |
-| build_timeout                   | How long in minutes                 | number         |
-| artifacts                       | Info about the project's build      | map(string)    |
-| service_role_arn                | IAM Role for CodeBuild              | string         |
-| logs_config                     | Config for the builds to store log  | map(map(string)) |
-| codebuild_source                | Info about the project's input      | map(string)      |
-| source_auth                     | Information about the authorization | map(string)      |
-| vpc_config                      | Configuration for the builds to run | map(string)      |
-| environment                     | Info about the project's build      | map(string)      |
+|         **_Variable_**          |        **_Description_**            |     **_Type_**    |
+|---------------------------------|-------------------------------------|-------------------|
+| name                            | The projects name                   | string            |
+| description                     | A short description of the project  | string            |
+| build_timeout                   | How long in minutes                 | number            |
+| artifacts                       | Info about the project's build      | map(string)       |
+| service_role_arn                | IAM Role for CodeBuild              | string            |
+| logs_config                     | Config for the builds to store log  | map(map(string))  |
+| codebuild_source                | Info about the project's input      | map(string)       |
+| source_auth                     | Information about the authorization | map(string)       |
+| vpc_config                      | Configuration for the builds to run | map(string)       |
+| environment                     | Info about the project's build      | map(string)       |
 | environment_variable            | A set of environment variables      | list(map(string)) |
-| common_tags                     | Common Resource Tags                | map(string)
+| common_tags                     | Common Resource Tags                | map(string)       |
 
 
 ## Outputs

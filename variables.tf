@@ -41,30 +41,17 @@ variable "vpc_config" {
   type        = map(string)
 }
 
-variable "compute_type" {
-  type        = string
-  default     = "BUILD_GENERAL1_SMALL"
-  description = "The builder instance class"
-}
-
 variable "environment" {
-  type = map(string)  
+  description = "Information about the project's build"
+  type        = map(string)  
 }
 
 variable "environment_variable" {
-  type = list(map(string))
-}
-
-variable "encrypt_ami" {
-  default = true
-}
-
-variable "environment_build_image" {
-  type        = string
-  default     = "aws/codebuild/standard:3.0"
-  description = "Docker image used by CodeBuild"
+  description = "A set of environment variables"
+  type        = list(map(string))
 }
 
 variable "common_tags" {
+  description = "Common Resource Tags"
   type = map(string)
 }

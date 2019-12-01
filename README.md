@@ -25,9 +25,9 @@ From branch : **_terraform-11/master_**
 
 * **_CodeBuild Project (Terraform 11 supported code)_**
 
-From branch : **_terraform-12/master_** *work in progress*
+From branch : **_terraform-12/master_**
 
-* **_CodeBuild Project (Terraform 11 supported code - work in progres)_**
+* **_CodeBuild Project (Terraform 11 supported code_**
 
 
 ---

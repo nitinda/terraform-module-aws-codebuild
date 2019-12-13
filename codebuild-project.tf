@@ -19,7 +19,7 @@ resource "aws_codebuild_project" "codebuild_project" {
   }
 
   dynamic "environment" {
-    for_each = [var.environment]
+    for_each = var.environment == {} ? [var.environment] : []
     content {
       compute_type                = lookup(environment.value, "compute_type")
       image                       = lookup(environment.value, "image")
@@ -28,7 +28,7 @@ resource "aws_codebuild_project" "codebuild_project" {
       privileged_mode             = lookup(environment.value, "privileged_mode", false)
 
       dynamic "environment_variable" {
-        for_each = var.environment_variable
+        for_each = var.environment_variable != [] ? var.environment_variable : []
         content {
           name  = lookup(environment_variable.value, "name", null)
           value = lookup(environment_variable.value, "value", null)
@@ -59,7 +59,7 @@ resource "aws_codebuild_project" "codebuild_project" {
   }
 
   dynamic "logs_config" {
-    for_each = [var.logs_config]
+    for_each = var.logs_config == {} ? [var.logs_config] : []
     content {
       dynamic "cloudwatch_logs" {
         for_each = [lookup(logs_config.value, "cloudwatch_logs", null)]

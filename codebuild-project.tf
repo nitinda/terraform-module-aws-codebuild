@@ -82,7 +82,7 @@ resource "aws_codebuild_project" "codebuild_project" {
   }
 
   dynamic "vpc_config" {
-    for_each = [var.vpc_config]
+    for_each = var.vpc_config == {} ? [var.vpc_config] : []
     content {
       security_group_ids = [vpc_config.value.security_group_ids]
       subnets            = [vpc_config.value.subnets]

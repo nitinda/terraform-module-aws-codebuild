@@ -59,10 +59,10 @@ resource "aws_codebuild_project" "codebuild_project" {
   }
 
   dynamic "logs_config" {
-    for_each = var.logs_config == {} ? [var.logs_config] : []
+    for_each = length(keys(var.logs_config)) == 0 ? [] : [var.logs_config]
     content {
       dynamic "cloudwatch_logs" {
-        for_each = [lookup(logs_config.value, "cloudwatch_logs", null)]
+        for_each = length(keys(lookup(var.logs_config, "cloudwatch_logs", {}))) == 0 ? [] : [lookup(var.logs_config, "cloudwatch_logs", {})]
         content {
           group_name  = lookup(cloudwatch_logs.value, "group_name", null)
           status      = lookup(cloudwatch_logs.value, "status", null)
@@ -71,7 +71,7 @@ resource "aws_codebuild_project" "codebuild_project" {
       }
 
       dynamic "s3_logs" {
-        for_each = [lookup(logs_config.value, "s3_logs", null)]
+        for_each = length(keys(lookup(var.logs_config, "s3_logs", {}))) == 0 ? [] : [lookup(var.logs_config, "s3_logs", {})]
         content {
           encryption_disabled = lookup(s3_logs.value, "encryption_disabled", null)
           location            = lookup(s3_logs.value, "location", null)

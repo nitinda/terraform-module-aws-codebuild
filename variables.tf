@@ -28,12 +28,7 @@ variable "logs_config" {
 
 variable "codebuild_source" {
   description = "Information about the project's input source code"
-  type        = map(string)
-}
-
-variable "source_auth" {
-  description = "Information about the authorization settings for AWS CodeBuild to access the source code to be built."
-  type        = map(string)
+  type        = any
 }
 
 variable "vpc_config" {
@@ -43,12 +38,7 @@ variable "vpc_config" {
 
 variable "environment" {
   description = "Information about the project's build"
-  type        = map(string)  
-}
-
-variable "environment_variable" {
-  description = "A set of environment variables"
-  type        = list(map(string))
+  type        = any  
 }
 
 variable "common_tags" {

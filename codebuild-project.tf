@@ -1,6 +1,6 @@
 resource "aws_codebuild_project" "codebuild_project" {
-  name          = var.name
-  description   = var.description
+  name          = "ami-builder"
+  description   = "Managed by Terraform: AMI builder using Packer and Ansible."
   build_timeout = var.build_timeout
   service_role  = var.service_role_arn
   dynamic "artifacts" {
@@ -19,7 +19,7 @@ resource "aws_codebuild_project" "codebuild_project" {
   }
 
   dynamic "environment" {
-    for_each = var.environment == {} ? [var.environment] : []
+    for_each = [var.environment]
     content {
       compute_type                = lookup(environment.value, "compute_type")
       image                       = lookup(environment.value, "image")
@@ -28,7 +28,7 @@ resource "aws_codebuild_project" "codebuild_project" {
       privileged_mode             = lookup(environment.value, "privileged_mode", false)
 
       dynamic "environment_variable" {
-        for_each = var.environment_variable != [] ? var.environment_variable : []
+        for_each = lookup(environment.value, "environment_variable", []) == 0 ? [] : lookup(environment.value, "environment_variable", [])
         content {
           name  = lookup(environment_variable.value, "name", null)
           value = lookup(environment_variable.value, "value", null)
@@ -49,7 +49,7 @@ resource "aws_codebuild_project" "codebuild_project" {
       type                = source.value.type
 
       dynamic "auth" {
-        for_each = [var.source_auth]
+        for_each = length(keys(lookup(source.value, "auth", {}))) == 0 ? [] : [lookup(source.value, "auth", {})]
         content {
           resource = lookup(auth.value, "resource", null)
           type     = auth.value.type
@@ -89,7 +89,4 @@ resource "aws_codebuild_project" "codebuild_project" {
       vpc_id             = vpc_config.value.vpc_id
     }
   }
-
-  tags = var.common_tags
-
 }

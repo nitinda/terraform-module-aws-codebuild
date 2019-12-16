@@ -21,13 +21,9 @@ This module deploys aws services details are in respective feature branches.
 
 Below we are able to check the resources that are being created as part of this module call:
 
-From branch : **_terraform-11/master_**
-
-* **_CodeBuild Project (Terraform 11 supported code)_**
-
 From branch : **_terraform-12/master_**
 
-* **_CodeBuild Project (Terraform 11 supported code_**
+* **_CodeBuild Project (Terraform 11 supported code)_**
 
 
 ---
@@ -60,7 +56,6 @@ module "<layer>-codebuild-project-<AccountID>" {
 
   common_tags          = var.common_tags
   service_role_arn     = module.iam_role_code_build.arn
-  codebuild_source     = local.codebuild_source
   source_auth          = local.codebuild_source_auth
   logs_config          = {
     s3_logs = {
@@ -70,17 +65,30 @@ module "<layer>-codebuild-project-<AccountID>" {
       status = "ENABLED"
     }
   }
-  environment          = {
+  codebuild_source = {
+      type                = "GITHUB"
+      location            = "https://github.com/nitinda/packer-aws-ami-builder.git"
+      buildspec           = data.template_file.template_file_ami_buildspec.rendered
+      git_clone_depth     = 0
+      report_build_status = true
+
+      auth = {
+        type     = "OAUTH"
+        resource = module.codebuild_source_credentials.arn
+      }
+  }
+  environment = {
     compute_type = "BUILD_GENERAL1_SMALL"
     image        = "aws/codebuild/standard:3.0"
     type         = "LINUX_CONTAINER"
+
+    environment_variable = [
+      {
+        name  = "AMAZON_LINUX2_AMI"
+        value = "AmazonLinux2"
+      }
+    ]
   }
-  environment_variable = [
-    {
-      name  = "AMAZON_LINUX2_AMI"
-      value = "AmazonLinux2-Base-AMI.json"
-    }
-  ]
   vpc_config           = local.vpc_config
 }
 ```
@@ -99,11 +107,9 @@ The variables required in order for the module to be successfully called from th
 | artifacts                       | Info about the project's build      | map(string)       |
 | service_role_arn                | IAM Role for CodeBuild              | string            |
 | logs_config                     | Config for the builds to store log  | map(map(string))  |
-| codebuild_source                | Info about the project's input      | map(string)       |
-| source_auth                     | Information about the authorization | map(string)       |
+| codebuild_source                | Info about the project's input      | any               |
 | vpc_config                      | Configuration for the builds to run | map(string)       |
-| environment                     | Info about the project's build      | map(string)       |
-| environment_variable            | A set of environment variables      | list(map(string)) |
+| environment                     | Info about the project's build      | any               |
 | common_tags                     | Common Resource Tags                | map(string)       |
 
 

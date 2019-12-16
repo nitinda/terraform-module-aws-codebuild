@@ -60,7 +60,7 @@ module "<layer>-codebuild-project-<AccountID>" {
   logs_config          = {
     s3_logs = {
       status = "DISABLED"
-    },
+    }
     cloudwatch_logs = {
       status = "ENABLED"
     }

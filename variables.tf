@@ -23,7 +23,7 @@ variable "service_role_arn" {
 
 variable "logs_config" {
   description = "Configuration for the builds to store log data to CloudWatch or S3"
-  type        = map(map(string))
+  type        = any
 }
 
 variable "codebuild_source" {

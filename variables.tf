@@ -41,7 +41,7 @@ variable "environment" {
   type        = any  
 }
 
-variable "common_tags" {
+variable "tags" {
   description = "Common Resource Tags"
   type = map(string)
 }

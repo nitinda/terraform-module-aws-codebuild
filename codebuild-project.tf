@@ -89,4 +89,5 @@ resource "aws_codebuild_project" "codebuild_project" {
       vpc_id             = vpc_config.value.vpc_id
     }
   }
+  tags = var.tags
 }

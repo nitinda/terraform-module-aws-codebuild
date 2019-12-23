@@ -112,6 +112,7 @@ The variables required in order for the module to be successfully called from th
 | **_tags_** | Key-value mapping of resource tags  | map(string) | **_Required_** |
 
 
+
 ## Outputs
 
 * **_id_**

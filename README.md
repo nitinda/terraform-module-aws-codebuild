@@ -10,7 +10,7 @@ This module may be used to create **_CodeBuild Project_** resources in AWS cloud
 
 ## Prerequisites
 
-This module needs Terraform 0.11.14 or newer.
+This module needs **_Terraform 0.11.14_** or newer.
 You can download the latest Terraform version from [here](https://www.terraform.io/downloads.html).
 
 This module deploys aws services details are in respective feature branches.
@@ -20,10 +20,6 @@ This module deploys aws services details are in respective feature branches.
 ## Features Branches
 
 Below we are able to check the resources that are being created as part of this module call:
-
-From branch : **_terraform-11/master_**
-
-* **_CodeBuild Project (Terraform 11 supported code)_**
 
 From branch : **_terraform-12/master_**
 
@@ -59,9 +55,8 @@ module "<layer>-codebuild-project-<AccountID>" {
 The variables required in order for the module to be successfully called from the deployment repository are the following:
 
 
-|         **_Variable_**          |        **_Description_**            |   **_Type_**   |
-|---------------------------------|-------------------------------------|----------------|
-
+|**_Variable_** | **_Description_** | **_Type_** | **_Argument Status_** |
+|:----|:----|-----:|:---:|
 
 
 Details are in respective branch.

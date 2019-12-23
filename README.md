@@ -23,7 +23,7 @@ Below we are able to check the resources that are being created as part of this 
 
 From branch : **_terraform-12/master_**
 
-* **_CodeBuild Project (Terraform 11 supported code_**
+* **_CodeBuild Project (Terraform 12 supported code)_**
 
 
 ---

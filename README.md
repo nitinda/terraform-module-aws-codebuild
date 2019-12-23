@@ -98,19 +98,18 @@ module "<layer>-codebuild-project-<AccountID>" {
 
 The variables required in order for the module to be successfully called from the deployment repository are the following:
 
-
-|         **_Variable_**          |        **_Description_**            |     **_Type_**    |
-|---------------------------------|-------------------------------------|-------------------|
-| name                            | The projects name                   | string            |
-| description                     | A short description of the project  | string            |
-| build_timeout                   | How long in minutes                 | number            |
-| artifacts                       | Info about the project's build      | map(string)       |
-| service_role_arn                | IAM Role for CodeBuild              | string            |
-| logs_config                     | Config for the builds to store log  | map(map(string))  |
-| codebuild_source                | Info about the project's input      | any               |
-| vpc_config                      | Configuration for the builds to run | map(string)       |
-| environment                     | Info about the project's build      | any               |
-| common_tags                     | Common Resource Tags                | map(string)       |
+|**_Variable_** | **_Description_** | **_Type_** | **_Argument Status_** |
+|:----|:----|-----:|:---:|
+| **_name_** | The projects name | string | **_Required_** |
+| **_description_** | A short description of the project | string | **_Required_** |
+| **_build\_timeout_** | How long in minutes | number | **_Required_** |
+| **_artifacts_** | Info about the project's build | map(string) | **_Required_** |
+| **_service\_role\_arn_** | IAM Role for CodeBuild | string | **_Required_** |
+| **_logs\_config_** | Config for the builds to store log  | map(map(string))  | **_Required_** |
+| **_codebuild\_source_** | Info about the project's input | any | **_Required_** |
+| **_vpc\_config_** | Configuration for the builds to run | map(string) | **_Required_** |
+| **_environment_** | Info about the project's build | any | **_Required_** |
+| **_tags_** | Key-value mapping of resource tags  | map(string) | **_Required_** |
 
 
 ## Outputs
